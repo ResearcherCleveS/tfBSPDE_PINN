@@ -6,9 +6,9 @@ from scipy.special import gamma
 import math
 import matplotlib.pyplot as plt
 # %config InlineBackend.figure_formats='svg'
-import plotly.io as pio
-# Set the default renderer to display plots in your browser
-pio.renderers.default = 'browser'
+# import plotly.io as pio
+# # Set the default renderer to display plots in your browser
+# pio.renderers.default = 'browser'
 import plotly.graph_objects as go
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
