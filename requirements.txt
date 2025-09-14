@@ -12,5 +12,5 @@ openai
 OpenAI
 python-dotenv
 
-torch
+pytorch
 math
