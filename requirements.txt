@@ -11,6 +11,5 @@ langchain_community
 openai
 OpenAI
 python-dotenv
-
-pytorch
+torch
 math
