@@ -13,6 +13,4 @@ OpenAI
 python-dotenv
 
 torch
-torch.nn
-torch.optim
 math
