@@ -199,11 +199,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     rows=2, cols=2,
     specs=[[{'type': 'surface'}, {'type': 'surface'}],
            [{'type': 'surface'}, {'type': 'surface'}]],
-    # 4. Update the layout
-    fig.update_layout(
-        title_text='European Put payoff for sigma = 0.35',
-        height=800, width=800
-    )
+    
     subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
     )
     
@@ -217,7 +213,9 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         fig.update_layout(scene1=dict(
         xaxis_title='Stock Price',
         yaxis_title='Time to maturity',
-        zaxis_title='Option price'
+        zaxis_title='Option price',
+        title_text='European Put payoff for sigma = 0.35',
+        height=800, width=800
         ))
         st.plotly_chart(fig)
     else:
@@ -225,6 +223,13 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         go.Surface(x=x_test, y=t_test, z=u_pred, colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=2, col=j-1,
+        fig.update_layout(scene1=dict(
+        xaxis_title='Stock Price',
+        yaxis_title='Time to maturity',
+        zaxis_title='Option price',
+        title_text='European Put payoff for sigma = 0.35',
+        height=800, width=800
+        ))
         )
         st.plotly_chart(fig)#, use_container_width=True)
     
