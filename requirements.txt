@@ -1,4 +1,5 @@
 streamlit
+torch
 yfinance
 pandas
 numpy
@@ -11,5 +12,3 @@ langchain_community
 openai
 OpenAI
 python-dotenv
-torch
-math
