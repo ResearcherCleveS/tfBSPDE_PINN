@@ -209,7 +209,6 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         go.Surface(x=x_test, y=t_test, z=u_pred, colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=1, col=j+1,
-        )
         fig.update_layout(scene1=dict(
         xaxis_title='Stock Price',
         yaxis_title='Time to maturity',
@@ -217,6 +216,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         title_text='European Put payoff for sigma = 0.35',
         height=800, width=800
         ))
+        )
         st.plotly_chart(fig)
     else:
         fig.add_trace(
