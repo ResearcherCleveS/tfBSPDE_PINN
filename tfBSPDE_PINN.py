@@ -201,4 +201,6 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     ax.set_xlabel('Stock price')
     ax.set_ylabel('Time to maturity')
     ax.set_zlabel('Option price');
-    fig.show()
+    # Display the plot in Streamlit
+    st.pyplot(fig)fig.show()
+    
