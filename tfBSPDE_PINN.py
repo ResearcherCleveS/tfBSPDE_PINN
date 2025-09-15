@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 # # Set the default renderer to display plots in your browser
 # pio.renderers.default = 'browser'
 import plotly.graph_objects as go
+from plotly.subplots import make.subplots
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
 
@@ -220,7 +221,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         opacity=0.75),
         row=2, col=j-1,
         )
-        st.plotly_chart(fig)
+        st.plotly_chart(fig)#, use_container_width=True)
     
     # ax = fig.add_subplot(2,2,j+1, projection='3d')
     # plt.subplots_adjust(hspace=0.250, wspace=0.0)
