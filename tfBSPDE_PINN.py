@@ -136,8 +136,17 @@ x_coll, tau = torch.meshgrid(x.squeeze(), t.squeeze(), indexing='xy')
 x_coll = x_coll.reshape(-1,1)   # <-- collocation spatial points.
 tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 
-fig = plt.figure(figsize=(12, 7))
-fig.suptitle('European Put payoff for sigma = 0.35')
+# fig = plt.figure(figsize=(12, 7))
+# fig.suptitle('European Put payoff for sigma = 0.35')
+fig = make_subplots(
+    rows=2, cols=2,
+    specs=[[{'type': 'surface'}, {'type': 'surface'}],
+           [{'type': 'surface'}, {'type': 'surface'}]],
+    # 4. Update the layout
+    fig.update_layout(
+        title_text='European Put payoff for sigma = 0.35',
+        height=800, width=800
+    )
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
@@ -195,10 +204,15 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     t_test = t_test.numpy().reshape(M, M)
     u_pred = u_pred.reshape(M, M)
 
-    fig = make_subplots(
-    rows=2, cols=2,
-    specs=[[{'type': 'surface'}, {'type': 'surface'}],
-           [{'type': 'surface'}, {'type': 'surface'}]],
+    # fig = make_subplots(
+    # rows=2, cols=2,
+    # specs=[[{'type': 'surface'}, {'type': 'surface'}],
+    #        [{'type': 'surface'}, {'type': 'surface'}]],
+    # # 4. Update the layout
+    # fig.update_layout(
+    #     title_text='European Put payoff for sigma = 0.35',
+    #     height=800, width=800
+    # )
     subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
     )
     
