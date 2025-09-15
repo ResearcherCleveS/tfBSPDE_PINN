@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # # Set the default renderer to display plots in your browser
 # pio.renderers.default = 'browser'
 import plotly.graph_objects as go
-from plotly.subplots import make.subplots
+from plotly.subplots import make_subplots
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
 
