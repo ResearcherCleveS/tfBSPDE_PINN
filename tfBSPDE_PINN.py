@@ -142,11 +142,11 @@ fig = make_subplots(
     rows=2, cols=2,
     specs=[[{'type': 'surface'}, {'type': 'surface'}],
            [{'type': 'surface'}, {'type': 'surface'}]],
-    # 4. Update the layout
-    fig.update_layout(
-        title_text='European Put payoff for sigma = 0.35',
-        height=800, width=800
-    )
+# 4. Update the layout
+fig.update_layout(
+    title_text='European Put payoff for sigma = 0.35',
+    height=800, width=800
+)
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
