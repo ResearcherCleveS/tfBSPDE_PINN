@@ -193,14 +193,42 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     x_test = x_test.numpy().reshape(M, M)
     t_test = t_test.numpy().reshape(M, M)
     u_pred = u_pred.reshape(M, M)
+
+    fig = make_subplots(
+    rows=2, cols=2,
+    specs=[[{'type': 'surface'}, {'type': 'surface'}],
+           [{'type': 'surface'}, {'type': 'surface'}]],
+    subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+    )
     
-    ax = fig.add_subplot(2,2,j+1, projection='3d')
-    plt.subplots_adjust(hspace=0.250, wspace=0.0)
-    ax.plot_surface(x_test, t_test, u_pred, cmap='viridis', alpha=0.75)
-    ax.set_title(f'alpha = {alpha}')
-    ax.set_xlabel('Stock price')
-    ax.set_ylabel('Time to maturity')
-    ax.set_zlabel('Option price');
-    # Display the plot in Streamlit
-    st.pyplot(fig)
+    # 3. Add surfaces to subplots, specifying row and col
+    if j == 0 or j == 1:
+        fig.add_trace(
+        go.Surface(x=x_test, y=t_test, z=u_pred, colorscale='Viridis', showscale=True,
+        opacity=0.75),
+        row=1, col=j+1,
+        )
+        fig.update_layout(scene1=dict(
+        xaxis_title='Stock Price',
+        yaxis_title='Time to maturity',
+        zaxis_title='Option price'
+        ))
+        st.plotly_chart(fig)
+    else:
+        fig.add_trace(
+        go.Surface(x=x_test, y=t_test, z=u_pred, colorscale='Viridis', showscale=True,
+        opacity=0.75),
+        row=2, col=j-1,
+        )
+        st.plotly_chart(fig)
+    
+    # ax = fig.add_subplot(2,2,j+1, projection='3d')
+    # plt.subplots_adjust(hspace=0.250, wspace=0.0)
+    # ax.plot_surface(x_test, t_test, u_pred, cmap='viridis', alpha=0.75)
+    # ax.set_title(f'alpha = {alpha}')
+    # ax.set_xlabel('Stock price')
+    # ax.set_ylabel('Time to maturity')
+    # ax.set_zlabel('Option price');
+    # # Display the plot in Streamlit
+    # st.pyplot(fig)
     
