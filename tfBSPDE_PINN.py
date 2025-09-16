@@ -188,9 +188,8 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     t_test = t_test.reshape(-1, 1)
 
     model.eval()
-    u_pred = []
     with torch.no_grad():
-      u_pred.append(model(x_test, t_test).numpy())
+      u_pred_lst.append(model(x_test, t_test).numpy())
 
     # Reshape the predicted u values for a surface plotting
     x_test = x_test.numpy().reshape(M, M)
