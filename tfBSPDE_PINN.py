@@ -138,8 +138,12 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 
 # fig = plt.figure(figsize=(12, 7))
 # fig.suptitle('European Put payoff for sigma = 0.35')
+fig = make_subplots(
+    rows=2, cols=2,
+    specs=[[{'type': 'surface'} * 2] * 2],
+    subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+)
 u_pred_lst = []
-scenes = [scene1, scene2, scene3, scene4]
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
@@ -197,25 +201,17 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     t_test = t_test.numpy().reshape(M, M)
     u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
     
-    fig = make_subplots(
-    rows=2, cols=2,
-    specs=[[{'type': 'surface'}, {'type': 'surface'}],
-           [{'type': 'surface'}, {'type': 'surface'}]],
-    
-    subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
-    )
-    
     # 3. Add surfaces to subplots, specifying row and col
     if j == 0 or j == 1:
         fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j:j+1], colorscale='Viridis', showscale=True,
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=1, col=j+1,
         )
         fig.update_layout(
         title_text='European Put payoff for sigma = 0.35',
         height=800, width=800,
-        scenes[j:j+1]=dict(
+        scene=dict(
         xaxis_title='Stock Price',
         yaxis_title='Time to maturity',
         zaxis_title='Option price'
@@ -223,14 +219,14 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         st.plotly_chart(fig)
     else:
         fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j:j+1], colorscale='Viridis', showscale=True,
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=2, col=j-1,
         )
         fig.update_layout(
         title_text='European Put payoff for sigma = 0.35',
         height=800, width=800,
-        scenes[j:j+1]=dict(
+        scene=dict(
         xaxis_title='Stock Price',
         yaxis_title='Time to maturity',
         zaxis_title='Option price'
