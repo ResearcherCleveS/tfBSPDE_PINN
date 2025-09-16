@@ -139,6 +139,7 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 # fig = plt.figure(figsize=(12, 7))
 # fig.suptitle('European Put payoff for sigma = 0.35')
 u_pred_lst = []
+scenes = [scene1, scene2, scene3, scene4]
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
@@ -214,7 +215,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         fig.update_layout(
         title_text='European Put payoff for sigma = 0.35',
         height=800, width=800,
-        scene1=dict(
+        scenes[j]=dict(
         xaxis_title='Stock Price',
         yaxis_title='Time to maturity',
         zaxis_title='Option price'
@@ -229,30 +230,13 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         fig.update_layout(
         title_text='European Put payoff for sigma = 0.35',
         height=800, width=800,
-        scene1=dict(
+        scenes[j]=dict(
         xaxis_title='Stock Price',
         yaxis_title='Time to maturity',
         zaxis_title='Option price'
         ))
         st.plotly_chart(fig)#, use_container_width=True)
-k = 0
-for rows in range(1, 3):
-      for cols in range(1, 3):
-        fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred_lst[k], colorscale='Viridis', showscale=True,
-        opacity=0.75),
-        row=rows, col=cols,
-        )
-        fig.update_layout(
-        title_text='European Put payoff for sigma = 0.35',
-        height=800, width=800,
-        scene1=dict(
-        xaxis_title='Stock Price',
-        yaxis_title='Time to maturity',
-        zaxis_title='Option price'
-        ))
-        st.plotly_chart(fig)
-        k += 1
+    
     # ax = fig.add_subplot(2,2,j+1, projection='3d')
     # plt.subplots_adjust(hspace=0.250, wspace=0.0)
     # ax.plot_surface(x_test, t_test, u_pred, cmap='viridis', alpha=0.75)
