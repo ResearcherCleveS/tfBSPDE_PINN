@@ -194,7 +194,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     # Reshape the predicted u values for a surface plotting
     x_test = x_test.numpy().reshape(M, M)
     t_test = t_test.numpy().reshape(M, M)
-    u_pred[j] = u_pred[j].reshape(M, M)
+    u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
     
     fig = make_subplots(
     rows=2, cols=2,
