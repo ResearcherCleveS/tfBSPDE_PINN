@@ -138,6 +138,7 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 
 # fig = plt.figure(figsize=(12, 7))
 # fig.suptitle('European Put payoff for sigma = 0.35')
+u_pred_lst = []
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
@@ -207,7 +208,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     # 3. Add surfaces to subplots, specifying row and col
     if j == 0 or j == 1:
         fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred[j], colorscale='Viridis', showscale=True,
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=1, col=j+1,
         )
@@ -222,7 +223,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         st.plotly_chart(fig)
     else:
         fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred[j], colorscale='Viridis', showscale=True,
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=2, col=j-1,
         )
@@ -235,7 +236,26 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         zaxis_title='Option price'
         ))
         st.plotly_chart(fig)#, use_container_width=True)
-    
+    fig.add_trace(
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+        opacity=0.75),
+        row=2, col=1,
+        )
+    fig.add_trace(
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+        opacity=0.75),
+        row=2, col=2,
+        )
+    fig.add_trace(
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+        opacity=0.75),
+        row=2, col=1,
+        )
+    fig.add_trace(
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+        opacity=0.75),
+        row=2, col=2,
+        )
     # ax = fig.add_subplot(2,2,j+1, projection='3d')
     # plt.subplots_adjust(hspace=0.250, wspace=0.0)
     # ax.plot_surface(x_test, t_test, u_pred, cmap='viridis', alpha=0.75)
