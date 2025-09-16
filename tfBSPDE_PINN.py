@@ -208,7 +208,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     # 3. Add surfaces to subplots, specifying row and col
     if j == 0 or j == 1:
         fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[:j], colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=1, col=j+1,
         )
@@ -223,7 +223,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         st.plotly_chart(fig)
     else:
         fig.add_trace(
-        go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+        go.Surface(x=x_test, y=t_test, z=u_pred_lst[:j], colorscale='Viridis', showscale=True,
         opacity=0.75),
         row=2, col=j-1,
         )
