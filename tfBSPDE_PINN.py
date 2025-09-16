@@ -160,14 +160,6 @@ fig = make_subplots(
   specs=[[{'type': 'surface'}] * 2] * 2,
   subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
 )
-fig.update_layout(
-      title_text='European Put payoff for sigma = 0.35',
-      height=800, width=800,
-      scene=dict(
-      xaxis_title='Stock Price',
-      yaxis_title='Time to maturity',
-      zaxis_title='Option price'
-))
 u_pred_lst = []
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
@@ -231,7 +223,15 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     opacity=0.75),
     row=r[j], col=c[j],
     )
-    st.plotly_chart(fig)
+    fig.update_layout(
+      title_text='European Put payoff for sigma = 0.35',
+      height=800, width=800,
+      scene=dict(
+      xaxis_title='Stock Price',
+      yaxis_title='Time to maturity',
+      zaxis_title='Option price'
+    ))
+    st.plotly_chart(fig.show(), use_container_width=True)
       # fig.update_layout(
       # title_text='European Put payoff for sigma = 0.35',
       # height=800, width=800,
