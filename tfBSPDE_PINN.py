@@ -231,6 +231,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     yaxis_title='Time to maturity',
     zaxis_title='Option price'
     ))
+    st.plotly_chart(fig)
 fig = make_subplots(
 rows=2, cols=2,
 specs=[[{'type': 'surface'}] * 2] * 2,
@@ -288,6 +289,7 @@ fig.add_trace(
     yaxis_title='Time to maturity',
     zaxis_title='Option price'
     ))
+st.plotly_chart(fig)
     # 3. Add surfaces to subplots, specifying row and col
     # if j == 0 or j == 1:
     #     fig.add_trace(
