@@ -250,6 +250,7 @@ fig.add_trace(
     yaxis_title='Time to maturity',
     zaxis_title='Option price'
     ))
+st.plotly_chart(fig)
 fig.add_trace(
     go.Surface(x=x_test, y=t_test, z=u_pred_lst[1], colorscale='Viridis', showscale=True,
     opacity=0.75),
@@ -263,6 +264,7 @@ fig.add_trace(
     yaxis_title='Time to maturity',
     zaxis_title='Option price'
     ))
+st.plotly_chart(fig)
 fig.add_trace(
     go.Surface(x=x_test, y=t_test, z=u_pred_lst[2], colorscale='Viridis', showscale=True,
     opacity=0.75),
@@ -276,6 +278,7 @@ fig.add_trace(
     yaxis_title='Time to maturity',
     zaxis_title='Option price'
     ))
+st.plotly_chart(fig)
 fig.add_trace(
     go.Surface(x=x_test, y=t_test, z=u_pred_lst[3], colorscale='Viridis', showscale=True,
     opacity=0.75),
