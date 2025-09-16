@@ -216,7 +216,8 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         yaxis_title='Time to maturity',
         zaxis_title='Option price'
         ))
-        st.plotly_chart(fig)
+        fig.show()
+        st.plotly_chart(fig.show())
     else:
         fig.add_trace(
         go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
@@ -231,7 +232,8 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         yaxis_title='Time to maturity',
         zaxis_title='Option price'
         ))
-        st.plotly_chart(fig)#, use_container_width=True)
+        fig.show()
+        st.plotly_chart(fig.show())#, use_container_width=True)
       
     # ax = fig.add_subplot(2,2,j+1, projection='3d')
     # plt.subplots_adjust(hspace=0.250, wspace=0.0)
