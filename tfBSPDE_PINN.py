@@ -202,36 +202,36 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         if (epoch + 1) % 1000 == 0:
           i += 1
           optimizer = optim.Adam(model.parameters(), lr=l_rate[i])
-    M = 100
-    x_test = torch.linspace(0, 20, M).view(-1, 1)
-    t_test = torch.linspace(0,  1, M).view(-1, 1)
-    x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
-    x_test = x_test.reshape(-1, 1)
-    t_test = t_test.reshape(-1, 1)
-
-    model.eval()
-    with torch.no_grad():
-      u_pred_lst.append(model(x_test, t_test).numpy())
-
-    # Reshape the predicted u values for a surface plotting
-    x_test = x_test.numpy().reshape(M, M)
-    t_test = t_test.numpy().reshape(M, M)
-    u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
-    
-    fig.add_trace(
-    go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
-    opacity=0.75),
-    row=r[j], col=c[j],
-    )
-    fig.update_layout(
-    title_text='European Put payoff for sigma = 0.35',
-    height=800, width=800,
-    scene=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    st.plotly_chart(fig)
+      M = 100
+      x_test = torch.linspace(0, 20, M).view(-1, 1)
+      t_test = torch.linspace(0,  1, M).view(-1, 1)
+      x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
+      x_test = x_test.reshape(-1, 1)
+      t_test = t_test.reshape(-1, 1)
+  
+      model.eval()
+      with torch.no_grad():
+        u_pred_lst.append(model(x_test, t_test).numpy())
+  
+      # Reshape the predicted u values for a surface plotting
+      x_test = x_test.numpy().reshape(M, M)
+      t_test = t_test.numpy().reshape(M, M)
+      u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
+      
+      fig.add_trace(
+      go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+      opacity=0.75),
+      row=r[j], col=c[j],
+      )
+      fig.update_layout(
+      title_text='European Put payoff for sigma = 0.35',
+      height=800, width=800,
+      scene=dict(
+      xaxis_title='Stock Price',
+      yaxis_title='Time to maturity',
+      zaxis_title='Option price'
+      ))
+      st.plotly_chart(fig)
 fig = make_subplots(
 rows=2, cols=2,
 specs=[[{'type': 'surface'}] * 2] * 2,
