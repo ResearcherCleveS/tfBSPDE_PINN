@@ -140,7 +140,7 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 # fig.suptitle('European Put payoff for sigma = 0.35')
 fig = make_subplots(
     rows=2, cols=2,
-    specs=[[{'type': 'surface'} * 2] * 2],
+    specs=[[{'type': 'surface'}] * 2] * 2,
     subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
 )
 u_pred_lst = []
