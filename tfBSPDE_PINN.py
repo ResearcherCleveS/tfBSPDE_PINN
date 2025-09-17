@@ -262,7 +262,6 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     yaxis_title='Time to maturity',
     zaxis_title='Option price'
     ))
-    fig.show()
     st.plotly_chart(fig) #, use_container_width=True)
 # fig.update_layout(
       # title_text='European Put payoff for sigma = 0.35',
