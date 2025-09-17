@@ -232,5 +232,119 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
       zaxis_title='Option price'
     ))
     st.plotly_chart(fig) #, use_container_width=True)
+# fig.update_layout(
+      # title_text='European Put payoff for sigma = 0.35',
+      # height=800, width=800,
+      # scene=dict(
+      # xaxis_title='Stock Price',
+      # yaxis_title='Time to maturity',
+      # zaxis_title='Option price'
+      # ))
+      # st.plotly_chart(fig)
+  # fig = make_subplots(
+  # rows=2, cols=2,
+  # specs=[[{'type': 'surface'}] * 2] * 2,
+  # subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+  # )
+  # fig.add_trace(
+  #     go.Surface(x=x_test, y=t_test, z=u_pred_lst[0], colorscale='Viridis', showscale=True,
+  #     opacity=0.75),
+  #     row=r[0], col=c[0],
+  #     )
+  #     fig.update_layout(
+  #     title_text='European Put payoff for sigma = 0.35',
+  #     height=800, width=800,
+  #     scene1=dict(
+  #     xaxis_title='Stock Price',
+  #     yaxis_title='Time to maturity',
+  #     zaxis_title='Option price'
+  #     ))
+  # st.plotly_chart(fig)
+  # fig.add_trace(
+  #     go.Surface(x=x_test, y=t_test, z=u_pred_lst[1], colorscale='Viridis', showscale=True,
+  #     opacity=0.75),
+  #     row=r[1], col=c[1],
+  #     )
+  #     fig.update_layout(
+  #     title_text='European Put payoff for sigma = 0.35',
+  #     height=800, width=800,
+  #     scene2=dict(
+  #     xaxis_title='Stock Price',
+  #     yaxis_title='Time to maturity',
+  #     zaxis_title='Option price'
+  #     ))
+  # st.plotly_chart(fig)
+  # fig.add_trace(
+  #     go.Surface(x=x_test, y=t_test, z=u_pred_lst[2], colorscale='Viridis', showscale=True,
+  #     opacity=0.75),
+  #     row=r[2], col=c[2],
+  #     )
+  #     fig.update_layout(
+  #     title_text='European Put payoff for sigma = 0.35',
+  #     height=800, width=800,
+  #     scene3=dict(
+  #     xaxis_title='Stock Price',
+  #     yaxis_title='Time to maturity',
+  #     zaxis_title='Option price'
+  #     ))
+  # st.plotly_chart(fig)
+  # fig.add_trace(
+  #     go.Surface(x=x_test, y=t_test, z=u_pred_lst[3], colorscale='Viridis', showscale=True,
+  #     opacity=0.75),
+  #     row=r[3], col=c[3],
+  #     )
+  #     fig.update_layout(
+  #     title_text='European Put payoff for sigma = 0.35',
+  #     height=800, width=800,
+  #     scene4=dict(
+  #     xaxis_title='Stock Price',
+  #     yaxis_title='Time to maturity',
+  #     zaxis_title='Option price'
+  #     ))
+  # st.plotly_chart(fig)
+    # 3. Add surfaces to subplots, specifying row and col
+    # if j == 0 or j == 1:
+    #     fig.add_trace(
+    #     go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+    #     opacity=0.75),
+    #     row=1, col=j+1,
+    #     )
+    #     fig.update_layout(
+    #     title_text='European Put payoff for sigma = 0.35',
+    #     height=800, width=800,
+    #     scene=dict(
+    #     xaxis_title='Stock Price',
+    #     yaxis_title='Time to maturity',
+    #     zaxis_title='Option price'
+    #     ))
+    #     fig.show()
+    #     st.plotly_chart(fig.show())
+    # else:
+    #     fig.add_trace(
+    #     go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+    #     opacity=0.75),
+    #     row=2, col=j-1,
+    #     )
+    #     fig.update_layout(
+    #     title_text='European Put payoff for sigma = 0.35',
+    #     height=800, width=800,
+    #     scene=dict(
+    #     xaxis_title='Stock Price',
+    #     yaxis_title='Time to maturity',
+    #     zaxis_title='Option price'
+    #     ))
+    #     fig.show()
+    #     st.plotly_chart(fig.show())#, use_container_width=True)
       
+    # ax = fig.add_subplot(2,2,j+1, projection='3d')
+    # plt.subplots_adjust(hspace=0.250, wspace=0.0)
+    # ax.plot_surface(x_test, t_test, u_pred, cmap='viridis', alpha=0.75)
+    # ax.set_title(f'alpha = {alpha}')
+    # ax.set_xlabel('Stock price')
+    # ax.set_ylabel('Time to maturity')
+    # ax.set_zlabel('Option price');
+    # # Display the plot in Streamlit
+    # st.pyplot(fig)
+    
+
      
