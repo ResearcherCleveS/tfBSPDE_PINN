@@ -68,21 +68,21 @@ min_strike_pct = st.sidebar.number_input(
     format="%.1f"
 )
 
-# import torch
-# import torch.nn as nn
-# import torch.optim as optim
-# import numpy as np
-# from scipy.special import gamma
-# import math
-# import matplotlib.pyplot as plt
-# # %config InlineBackend.figure_formats='svg'
-# import plotly.io as pio
-# # Set the default renderer to display plots in your browser
-# pio.renderers.default = 'browser'
-# import plotly.graph_objects as go
-# from plotly.subplots import make_subplots
-# import torch.distributions as distributions
-# from matplotlib import cm # For colormaps
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import numpy as np
+from scipy.special import gamma
+import math
+import matplotlib.pyplot as plt
+# %config InlineBackend.figure_formats='svg'
+import plotly.io as pio
+# Set the default renderer to display plots in your browser
+pio.renderers.default = 'browser'
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import torch.distributions as distributions
+from matplotlib import cm # For colormaps
 
 class PINN(nn.Module):
   def __init__(self):
@@ -156,9 +156,9 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 r = [1,1,2,2]
 c = [1,2,1,2]
 fig = make_subplots(
-  rows=2, cols=2,
-  specs=[[{'type': 'surface'}] * 2] * 2,
-  subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+rows=2, cols=2,
+specs=[[{'type': 'surface'}] * 2] * 2,
+subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
 )
 u_pred_lst = []
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
@@ -202,35 +202,67 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
         if (epoch + 1) % 1000 == 0:
           i += 1
           optimizer = optim.Adam(model.parameters(), lr=l_rate[i])
-      M = 100
-      x_test = torch.linspace(0, 20, M).view(-1, 1)
-      t_test = torch.linspace(0,  1, M).view(-1, 1)
-      x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
-      x_test = x_test.reshape(-1, 1)
-      t_test = t_test.reshape(-1, 1)
-  
-      model.eval()
-      with torch.no_grad():
+    M = 100
+    x_test = torch.linspace(0, 20, M).view(-1, 1)
+    t_test = torch.linspace(0,  1, M).view(-1, 1)
+    x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
+    x_test = x_test.reshape(-1, 1)
+    t_test = t_test.reshape(-1, 1)
+    
+    model.eval()
+    with torch.no_grad():
         u_pred_lst.append(model(x_test, t_test).numpy())
-  
+    
       # Reshape the predicted u values for a surface plotting
-      x_test = x_test.numpy().reshape(M, M)
-      t_test = t_test.numpy().reshape(M, M)
-      u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
-      
-      fig.add_trace(
-      go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
-      opacity=0.75),
-      row=r[j], col=c[j],
-      )
+    x_test = x_test.numpy().reshape(M, M)
+    t_test = t_test.numpy().reshape(M, M)
+    u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
+    
+    # fig = make_subplots(
+    # rows=2, cols=2,
+    # specs=[[{'type': 'surface'}] * 2] *2,
+    # subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+    # )
+    
+    # 3. Add surfaces to subplots, specifying row and col
+    fig.add_trace(
+    go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+    opacity=0.75),
+    row=r[j], col=c[j],
+    )
     fig.update_layout(
-      title_text='European Put payoff for sigma = 0.35',
-      height=800, width=800,
-      scene=dict(
-      xaxis_title='Stock Price',
-      yaxis_title='Time to maturity',
-      zaxis_title='Option price'
+    title_text='European Put payoff for sigma = 0.35',
+    height=800, width=800,
+    scene1=dict(
+    xaxis_title='Stock Price',
+    yaxis_title='Time to maturity',
+    zaxis_title='Option price'
     ))
+    fig.update_layout(
+    title_text='European Put payoff for sigma = 0.35',
+    height=800, width=800,
+    scene2=dict(
+    xaxis_title='Stock Price',
+    yaxis_title='Time to maturity',
+    zaxis_title='Option price'
+    ))
+    fig.update_layout(
+    title_text='European Put payoff for sigma = 0.35',
+    height=800, width=800,
+    scene3=dict(
+    xaxis_title='Stock Price',
+    yaxis_title='Time to maturity',
+    zaxis_title='Option price'
+    ))
+    fig.update_layout(
+    title_text='European Put payoff for sigma = 0.35',
+    height=800, width=800,
+    scene4=dict(
+    xaxis_title='Stock Price',
+    yaxis_title='Time to maturity',
+    zaxis_title='Option price'
+    ))
+    fig.show()
     st.plotly_chart(fig) #, use_container_width=True)
 # fig.update_layout(
       # title_text='European Put payoff for sigma = 0.35',
