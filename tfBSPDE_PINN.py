@@ -7,9 +7,9 @@ from scipy.special import gamma
 import math
 import matplotlib.pyplot as plt
 # %config InlineBackend.figure_formats='svg'
-import plotly.io as pio
+# import plotly.io as pio
 # Set the default renderer to display plots in your browser
-pio.renderers.default = 'browser'
+# pio.renderers.default = 'browser'
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import torch.distributions as distributions
@@ -211,7 +211,7 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     
     model.eval()
     with torch.no_grad():
-        u_pred_lst.append(model(x_test, t_test).numpy())
+      u_pred_lst.append(model(x_test, t_test).numpy())
     
       # Reshape the predicted u values for a surface plotting
     x_test = x_test.numpy().reshape(M, M)
