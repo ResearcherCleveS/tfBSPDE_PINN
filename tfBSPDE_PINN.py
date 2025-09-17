@@ -15,7 +15,7 @@ from plotly.subplots import make_subplots
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
 
-st.title("Time Fractinal Black-Scholes Partial Differential Equation 👑 King Vester")
+st.title("Time Fractinal Black-Scholes Partial Differential Equation Rudy 👑 King Vester")
 
 # with st.sidebar:
 #   if st.button("**Summary**"):
