@@ -156,9 +156,9 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 r = [1,1,2,2]
 c = [1,2,1,2]
 fig = make_subplots(
-rows=2, cols=2,
-specs=[[{'type': 'surface'}] * 2] * 2,
-subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+  rows=2, cols=2,
+  specs=[[{'type': 'surface'}] * 2] * 2,
+  subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
 )
 u_pred_lst = []
 for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
