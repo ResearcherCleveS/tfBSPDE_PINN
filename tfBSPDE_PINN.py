@@ -1,4 +1,3 @@
-import streamlit as st
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -7,10 +6,26 @@ from scipy.special import gamma
 import math
 import matplotlib.pyplot as plt
 # %config InlineBackend.figure_formats='svg'
+import plotly.io as pio
+# Set the default renderer to display plots in your browser
+pio.renderers.default = 'browser'
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import torch.distributions as distributions
+from matplotlib import cm # For colormaps
+# import streamlit as st
+# import torch
+# import torch.nn as nn
+# import torch.optim as optim
+# import numpy as np
+# from scipy.special import gamma
+# import math
+# import matplotlib.pyplot as plt
+# %config InlineBackend.figure_formats='svg'
 # import plotly.io as pio
 # # Set the default renderer to display plots in your browser
 # pio.renderers.default = 'browser'
-import plotly.graph_objects as go
+# import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
@@ -67,22 +82,6 @@ min_strike_pct = st.sidebar.number_input(
     step=1.0,
     format="%.1f"
 )
-
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import numpy as np
-from scipy.special import gamma
-import math
-import matplotlib.pyplot as plt
-# %config InlineBackend.figure_formats='svg'
-import plotly.io as pio
-# Set the default renderer to display plots in your browser
-pio.renderers.default = 'browser'
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import torch.distributions as distributions
-from matplotlib import cm # For colormaps
 
 class PINN(nn.Module):
   def __init__(self):
