@@ -230,30 +230,30 @@ for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
     opacity=0.75),
     row=r[j], col=c[j],
     )
-    fig.update_layout(
-    title_text='European Put payoff for sigma = 0.35',
-    height=800, width=800,
-    scene1=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    fig.update_layout(
-    title_text='European Put payoff for sigma = 0.35',
-    height=800, width=800,
-    scene2=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    fig.update_layout(
-    title_text='European Put payoff for sigma = 0.35',
-    height=800, width=800,
-    scene3=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
+    # fig.update_layout(
+    # title_text='European Put payoff for sigma = 0.35',
+    # height=800, width=800,
+    # scene1=dict(
+    # xaxis_title='Stock Price',
+    # yaxis_title='Time to maturity',
+    # zaxis_title='Option price'
+    # ))
+    # fig.update_layout(
+    # title_text='European Put payoff for sigma = 0.35',
+    # height=800, width=800,
+    # scene2=dict(
+    # xaxis_title='Stock Price',
+    # yaxis_title='Time to maturity',
+    # zaxis_title='Option price'
+    # ))
+    # fig.update_layout(
+    # title_text='European Put payoff for sigma = 0.35',
+    # height=800, width=800,
+    # scene3=dict(
+    # xaxis_title='Stock Price',
+    # yaxis_title='Time to maturity',
+    # zaxis_title='Option price'
+    # ))
     fig.update_layout(
     title_text='European Put payoff for sigma = 0.35',
     height=800, width=800,
