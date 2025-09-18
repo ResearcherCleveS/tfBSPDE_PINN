@@ -69,7 +69,7 @@ rate = st.sidebar.number_input(
   '𝙧',
   min_value=0.05,
   max_value=0.15,
-  step=0.025
+  step=0.025,
   format='%.4f'
 )
   
