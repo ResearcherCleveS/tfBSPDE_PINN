@@ -31,7 +31,7 @@ from plotly.subplots import make_subplots
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
 
-st.title("Physics Informed Neural Network of Time Fractinal Black-Scholes Partial Differential Equation")
+st.title("Physics Informed Neural Network of Time Fractional Black-Scholes Partial Differential Equation")
 
 # with st.sidebar:
 #   if st.button("**Summary**"):
