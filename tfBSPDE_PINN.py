@@ -54,7 +54,7 @@ alpha_4 = st.sidebar.slider("4th 𝛂", min_value=0.0, max_value=1.0, value=0.90
 
 # Change the sigmas:
 # st.sidebar.header("***Caputa Fractional Derivative***")
-st.sidebar.header("***Volatility***")
+st.sidebar.header("**Volatility**")
 sigma = st.sidebar.number_input(
     # "𝗗𝑐𝛂 𝙛´(𝒙)",
     '𝞼',
