@@ -44,23 +44,35 @@ if st.button("**Summary**"):
   st.subheader("**AI plus Partial Differential Eqns ie Physics Informed Neural Network (PINN) demonstration.**")
   st.write("**We'll explore implementing a PINN to optimize the efficiency and application of the Black Scholes Formula.**")
 
-st.sidebar.header("Caputo Integer-Valued Derivatives")
-st.sidebar.write("May need to convert to integer value representations of fraction values.")
+# st.sidebar.header("Caputo Integer-Valued Derivatives")
+# st.sidebar.write("May need to convert to integer value representations of fraction values.")
+st.sidebar.header("Caputo Derivative Orders")
 alpha_1 = st.sidebar.slider("𝗗𝛂", min_value=0.0, max_value=1.0, value=0.30, step=0.10, format='%.3f')
 alpha_2 = st.sidebar.slider("2nd 𝛂", min_value=0.0, max_value=1.0, value=0.50, step=0.10, format='%.3f')
 alpha_3 = st.sidebar.slider("3rd 𝛂", min_value=0.0, max_value=1.0, value=0.70, step=0.10, format='%.3f')
 alpha_4 = st.sidebar.slider("4th 𝛂", min_value=0.0, max_value=1.0, value=0.90, step=0.10, format='%.3f')
 
 # Change the sigmas:
-st.sidebar.header("***Caputa Fractional Derivative***")
-𝗗𝛂 = st.sidebar.number_input(
-    "𝗗𝑐𝛂 𝙛´(𝒙)",
-    min_value=0.0,
-    max_value=1.00,
-    value=0.10,
-    step=0.10,
+# st.sidebar.header("***Caputa Fractional Derivative***")
+st.sidebar.header("***Volumn***")
+sigma = st.sidebar.number_input(
+    # "𝗗𝑐𝛂 𝙛´(𝒙)",
+    '𝞼',
+    min_value=0.15,
+    max_value=0.35,
+    # value=0.10,
+    
+    step=0.05,
     format="%.4f"
 )
+rate = st.sidebar.number_input(
+  '𝙧',
+  min_value=0.05,
+  max_value=0.15,
+  step=0.025
+  format='%.4f'
+)
+  
 
 # with st.sidebar:
 #   st.header("**Caputo Integer-Valued Derivatives**")
@@ -87,7 +99,7 @@ min_strike_pct = st.sidebar.number_input(
     step=1.0,
     format="%.1f"
 )
-
+# Say four hidden layers in the summary description.
 class PINN(nn.Module):
   def __init__(self):
     super(PINN, self).__init__()
@@ -110,7 +122,7 @@ class PINN(nn.Module):
     u = self.hidden(inputs)
     return u
 
-def cost_function(x, tau, model, alpha=float, r=0.05, vol=0.35):
+def cost_function(x, tau, model, alpha=float, r=rate, vol=sigma):
   # Partial differential equation (PDE)
   x.requires_grad = True
   tau.requires_grad = True
@@ -143,7 +155,7 @@ def cost_function(x, tau, model, alpha=float, r=0.05, vol=0.35):
 def initial_condition(x, K=10):
   return torch.maximum(K-x.detach(), torch.tensor(0))
 
-def boundary_condition(x, t, K=10, r=0.05):
+def boundary_condition(x, t, K=10, r=rate):
   # May be can try all zeros?
   return torch.where(x == 0, K * torch.exp(-r * t), torch.zeros_like(t))
 
