@@ -161,7 +161,7 @@ c = [1,2,1,2]
 fig = make_subplots(
   rows=2, cols=2,
   specs=[[{'type': 'surface'}] * 2] * 2,
-  subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+  subplot_titles=(f'{alpha}', f'{alpha}', f'{alpha}', f'{alpha}')
 )
 u_pred_lst = []
 for j, alpha in enumerate(np.array([alpha_1, alpha_2, alpha_3, alpha_4])): #np.array([0.1, 0.3, 0.7, 0.9])):
