@@ -65,6 +65,7 @@ sigma = st.sidebar.number_input(
     step=0.05,
     format="%.4f"
 )
+st.sidebar.header("**Risk-Free Interest Rate**")
 rate = st.sidebar.number_input(
   '𝙧',
   min_value=0.05,
