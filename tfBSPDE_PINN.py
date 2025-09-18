@@ -164,7 +164,7 @@ fig = make_subplots(
   subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
 )
 u_pred_lst = []
-for j, alpha in enumerate(np.array([value, value, value, value])): #np.array([0.1, 0.3, 0.7, 0.9])):
+for j, alpha in enumerate(np.array([st.value, st.value, st.value, st.value])): #np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
     model = PINN()
