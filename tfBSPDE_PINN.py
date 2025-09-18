@@ -51,6 +51,7 @@ alpha_2 = st.sidebar.slider("2nd 𝛂", min_value=0.0, max_value=1.0, value=0.50
 alpha_3 = st.sidebar.slider("3rd 𝛂", min_value=0.0, max_value=1.0, value=0.70, step=0.10, format='%.3f')
 alpha_4 = st.sidebar.slider("4th 𝛂", min_value=0.0, max_value=1.0, value=0.90, step=0.10, format='%.3f')
 
+# Change the sigmas:
 st.sidebar.header("***Caputa Fractional Derivative***")
 𝗗𝛂 = st.sidebar.number_input(
     "𝗗𝑐𝛂 𝙛´(𝒙)",
@@ -205,7 +206,7 @@ for j, alpha in enumerate(np.array([alpha_1, alpha_2, alpha_3, alpha_4])): #np.a
         if (epoch + 1) % 1000 == 0:
           i += 1
           optimizer = optim.Adam(model.parameters(), lr=l_rate[i])
-    M = 100
+    M = 160 # 100
     x_test = torch.linspace(0, 20, M).view(-1, 1)
     t_test = torch.linspace(0,  1, M).view(-1, 1)
     x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
