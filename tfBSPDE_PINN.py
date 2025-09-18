@@ -31,7 +31,7 @@ from plotly.subplots import make_subplots
 import torch.distributions as distributions
 from matplotlib import cm # For colormaps
 
-st.title("Time Fractinal Black-Scholes Partial Differential Equation Rudy 👑 King Vester")
+st.title("Pysics Informed Neural Network of Time Fractinal Black-Scholes Partial Differential Equation")
 
 # with st.sidebar:
 #   if st.button("**Summary**"):
@@ -48,7 +48,7 @@ st.sidebar.header("Caputo Integer-Valued Derivatives")
 st.sidebar.write("May need to convert to integer value representations of fraction values.")
 st.sidebar.slider("𝗗𝛂", min_value=0.0, max_value=1.0, step=0.10, format='%.3f')
 
-st.sidebar.header("***Caputa Fractional Derivative***")
+st.sidebar.header("**Caputa Fractional Derivative**")
 𝗗𝛂 = st.sidebar.number_input(
     "𝗗𝑐𝛂 𝙛´(𝒙)",
     min_value=0.0,
