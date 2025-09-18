@@ -47,7 +47,7 @@ if st.button("**Summary**"):
 st.sidebar.header("Caputo Integer-Valued Derivatives")
 st.sidebar.write("May need to convert to integer value representations of fraction values.")
 st.sidebar.slider("𝗗𝛂", min_value=0.0, max_value=1.0, step=0.10, format='%.3f')
-st.sidebar.slider("2nd 𝛂", min_value=0.0, max_value=1.0, step=0.10, format='%.3f')
+st.sidebar.slider("\textsf{2nd 𝛂}", min_value=0.0, max_value=1.0, step=0.10, format='%.3f')
 st.sidebar.slider("3rd 𝛂", min_value=0.0, max_value=1.0, step=0.10, format='%.3f')
 st.sidebar.slider("4th 𝛂", min_value=0.0, max_value=1.0, step=0.10, format='%.3f')
 
@@ -164,7 +164,7 @@ fig = make_subplots(
   subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
 )
 u_pred_lst = []
-for j, alpha in enumerate(np.array([0.1, 0.3, 0.7, 0.9])):
+for j, alpha in enumerate(np.array([step, step, step, step])): #np.array([0.1, 0.3, 0.7, 0.9])):
     
     # Define the model, optimizer, and loss function
     model = PINN()
