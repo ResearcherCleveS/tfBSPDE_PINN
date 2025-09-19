@@ -73,7 +73,7 @@ rate = st.sidebar.number_input(
   step=0.0250,
   format='%.4f'
 )
-"""Add the spinner to show the neural net is still processing through its epochs."""
+# """Add the spinner to show the neural net is still processing through its epochs."""
 
 # with st.sidebar:
 #   st.header("**Caputo Integer-Valued Derivatives**")
