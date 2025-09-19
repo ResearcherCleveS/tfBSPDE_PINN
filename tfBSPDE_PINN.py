@@ -178,7 +178,7 @@ fig = make_subplots(
   subplot_titles=(f'alpha = {alpha_1}', f'alpha = {alpha_2}', f'alpha = {alpha_3}', f'alpha = {alpha_4}')
 )
 u_pred_lst = []
-with st.spinner('Calculating through epochs & model tests (approx ~90s each model)...'): #implied volatility...'):
+with st.spinner('Calculating through epochs & model tests (approx ~90s each test model)...'): #implied volatility...'):
   for j, alpha in enumerate(np.array([alpha_1, alpha_2, alpha_3, alpha_4])): #np.array([0.1, 0.3, 0.7, 0.9])):
       
       # Define the model, optimizer, and loss function
