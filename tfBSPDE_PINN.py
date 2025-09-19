@@ -58,19 +58,19 @@ st.sidebar.header("**Volatility**")
 sigma = st.sidebar.number_input(
     # "𝗗𝑐𝛂 𝙛´(𝒙)",
     '𝞼',
-    min_value=0.15,
-    max_value=0.35,
-    # value=0.10,
+    min_value=0.150,
+    max_value=0.350,
+    value=0.350,
     
-    step=0.05,
+    step=0.050,
     format="%.4f"
 )
 st.sidebar.header("**Risk-Free Interest Rate**")
 rate = st.sidebar.number_input(
   '𝙧',
-  min_value=0.05,
-  max_value=0.15,
-  step=0.025,
+  min_value=0.050,
+  max_value=0.150,
+  step=0.0250,
   format='%.4f'
 )
 """Add the spinner to show the neural net is still processing through its epochs."""
