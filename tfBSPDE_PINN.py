@@ -284,5 +284,5 @@ with st.spinner('Calculating through epochs & model tests (approx ~90s each test
 
 st.write('---')
 st.markdown(
-            "Created by SCLEVEL7777 | [Outlook](https://outlook.office.com/mail/inbox/id/AAQkAGI5NzM2NGY1LWNhOWUtNDVkNS1hMTE1LTE5MDkxODE5ZTk0OQAQALBFrBjCDHNBmL7UdBcUwmM%3D)" 
+            "Created by SCLEVEL7777 | [Website](https://researchercleves.github.io/portfolio-research/#top)" 
         )
