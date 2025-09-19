@@ -47,8 +47,8 @@ if st.button("**Summary**"):
 # st.sidebar.header("Caputo Integer-Valued Derivatives")
 # st.sidebar.write("May need to convert to integer value representations of fraction values.")
 st.sidebar.header("Caputo Derivative Orders")
-alpha_1 = st.sidebar.slider("𝗗𝛂", min_value=0.0, max_value=1.0, value=0.30, step=0.10, format='%.3f')
-alpha_2 = st.sidebar.slider("2nd 𝛂", min_value=0.0, max_value=1.0, value=0.50, step=0.10, format='%.3f')
+alpha_1 = st.sidebar.slider("𝗗𝛂", min_value=0.0, max_value=1.0, value=0.10, step=0.10, format='%.3f')
+alpha_2 = st.sidebar.slider("2nd 𝛂", min_value=0.0, max_value=1.0, value=0.30, step=0.10, format='%.3f')
 alpha_3 = st.sidebar.slider("3rd 𝛂", min_value=0.0, max_value=1.0, value=0.70, step=0.10, format='%.3f')
 alpha_4 = st.sidebar.slider("4th 𝛂", min_value=0.0, max_value=1.0, value=0.90, step=0.10, format='%.3f')
 
