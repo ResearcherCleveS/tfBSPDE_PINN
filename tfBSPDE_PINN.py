@@ -281,7 +281,7 @@ with st.spinner('Calculating through epochs & model tests (approx ~90s each test
       zaxis_title='Option price'
       ))
       st.plotly_chart(fig) #, use_container_width=True)
-st.succes('Model tests complete!')
+
 st.write('---')
 st.markdown(
             "Created by SCLEVEL7777 | [Outlook](https://outlook.office.com/mail/inbox/id/AAQkAGI5NzM2NGY1LWNhOWUtNDVkNS1hMTE1LTE5MDkxODE5ZTk0OQAQALBFrBjCDHNBmL7UdBcUwmM%3D)" 
