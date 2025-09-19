@@ -178,105 +178,106 @@ fig = make_subplots(
   subplot_titles=(f'alpha = {alpha_1}', f'alpha = {alpha_2}', f'alpha = {alpha_3}', f'alpha = {alpha_4}')
 )
 u_pred_lst = []
-for j, alpha in enumerate(np.array([alpha_1, alpha_2, alpha_3, alpha_4])): #np.array([0.1, 0.3, 0.7, 0.9])):
-    
-    # Define the model, optimizer, and loss function
-    model = PINN()
-    l_rate = [0.01, 0.001, 0.0005]
-    i = 0
-    optimizer = optim.Adam(model.parameters(), l_rate[i])
-    
-    # Training Loop
-    num_epochs = 3000
-    for epoch in range(num_epochs):
-      model.train()
-    
-      # Compute initial condition (IC) loss
-      u_pred = model(x, torch.zeros_like(x))  # u(x, 0)
-      u_true = initial_condition(x)
-      loss_ic = torch.mean((u_pred - u_true)**2)  # mean squared error (MSE) for IC
-    
-      # Compute boundary condition loss
-      u_pred_left = model(torch.full_like(t, 0.0), t)  # u(0, t)
-      u_pred_right = model(torch.full_like(t, 20.0), t)  # u(1, t)
-      loss_bc = torch.mean((u_pred_left - boundary_condition(torch.full_like(t, 0.0), t)) ** 2) + \
-                torch.mean((u_pred_right - boundary_condition(torch.full_like(t, 20.0), t))**2)
-                
-      # Compute PDE residual loss
-      residual = cost_function(x_coll, tau, model, alpha=alpha)
-      loss_pde = torch.mean(residual ** 2)  # MSE for PDE residual
-    
-      # Total loss
-      loss = loss_ic + loss_bc + loss_pde
-    
-      # Backpropagation and optimization
-      optimizer.zero_grad()
-      loss.backward()
-      optimizer.step()
-    
-      if (epoch) % 50 == 0: # % 1000 == 0: ...
-        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f} & num epochs: {epoch + 1}')
-        if (epoch + 1) % 1000 == 0:
-          i += 1
-          optimizer = optim.Adam(model.parameters(), lr=l_rate[i])
-    M = 160 # 100
-    x_test = torch.linspace(0, 20, M).view(-1, 1)
-    t_test = torch.linspace(0,  1, M).view(-1, 1)
-    x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
-    x_test = x_test.reshape(-1, 1)
-    t_test = t_test.reshape(-1, 1)
-    
-    model.eval()
-    with torch.no_grad():
-      u_pred_lst.append(model(x_test, t_test).numpy())
-    
-      # Reshape the predicted u values for a surface plotting
-    x_test = x_test.numpy().reshape(M, M)
-    t_test = t_test.numpy().reshape(M, M)
-    u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
-    
-    # fig = make_subplots(
-    # rows=2, cols=2,
-    # specs=[[{'type': 'surface'}] * 2] *2,
-    # subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
-    # )
-    
-    # 3. Add surfaces to subplots, specifying row and col
-    fig.add_trace(
-    go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
-    opacity=0.75),
-    row=r[j], col=c[j],
-    )
-    fig.update_layout(
-    title_text=f'European Put payoff for sigma = {sigma}',
-    height=800, width=800,
-    scene1=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    fig.update_layout(
-    title_text=f'European Put payoff for sigma = {sigma}',
-    height=800, width=800,
-    scene2=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    fig.update_layout(
-    title_text=f'European Put payoff for sigma = {sigma}',
-    height=800, width=800,
-    scene3=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    fig.update_layout(
-    title_text=f'European Put payoff for sigma = {sigma}',
-    height=800, width=800,
-    scene4=dict(
-    xaxis_title='Stock Price',
-    yaxis_title='Time to maturity',
-    zaxis_title='Option price'
-    ))
-    st.plotly_chart(fig) #, use_container_width=True)
+with st.spinner('Calculating implied volatility...'):
+  for j, alpha in enumerate(np.array([alpha_1, alpha_2, alpha_3, alpha_4])): #np.array([0.1, 0.3, 0.7, 0.9])):
+      
+      # Define the model, optimizer, and loss function
+      model = PINN()
+      l_rate = [0.01, 0.001, 0.0005]
+      i = 0
+      optimizer = optim.Adam(model.parameters(), l_rate[i])
+      
+      # Training Loop
+      num_epochs = 3000
+      for epoch in range(num_epochs):
+        model.train()
+      
+        # Compute initial condition (IC) loss
+        u_pred = model(x, torch.zeros_like(x))  # u(x, 0)
+        u_true = initial_condition(x)
+        loss_ic = torch.mean((u_pred - u_true)**2)  # mean squared error (MSE) for IC
+      
+        # Compute boundary condition loss
+        u_pred_left = model(torch.full_like(t, 0.0), t)  # u(0, t)
+        u_pred_right = model(torch.full_like(t, 20.0), t)  # u(1, t)
+        loss_bc = torch.mean((u_pred_left - boundary_condition(torch.full_like(t, 0.0), t)) ** 2) + \
+                  torch.mean((u_pred_right - boundary_condition(torch.full_like(t, 20.0), t))**2)
+                  
+        # Compute PDE residual loss
+        residual = cost_function(x_coll, tau, model, alpha=alpha)
+        loss_pde = torch.mean(residual ** 2)  # MSE for PDE residual
+      
+        # Total loss
+        loss = loss_ic + loss_bc + loss_pde
+      
+        # Backpropagation and optimization
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+      
+        if (epoch) % 50 == 0: # % 1000 == 0: ...
+          print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f} & num epochs: {epoch + 1}')
+          if (epoch + 1) % 1000 == 0:
+            i += 1
+            optimizer = optim.Adam(model.parameters(), lr=l_rate[i])
+      M = 160 # 100
+      x_test = torch.linspace(0, 20, M).view(-1, 1)
+      t_test = torch.linspace(0,  1, M).view(-1, 1)
+      x_test, t_test = torch.meshgrid(x_test.squeeze(), t_test.squeeze(), indexing='xy')
+      x_test = x_test.reshape(-1, 1)
+      t_test = t_test.reshape(-1, 1)
+      
+      model.eval()
+      with torch.no_grad():
+        u_pred_lst.append(model(x_test, t_test).numpy())
+      
+        # Reshape the predicted u values for a surface plotting
+      x_test = x_test.numpy().reshape(M, M)
+      t_test = t_test.numpy().reshape(M, M)
+      u_pred_lst[j] = u_pred_lst[j].reshape(M, M)
+      
+      # fig = make_subplots(
+      # rows=2, cols=2,
+      # specs=[[{'type': 'surface'}] * 2] *2,
+      # subplot_titles=('alpha = 0.1', 'alpha = 0.3', 'alpha = 0.7', 'alpha = 0.9')
+      # )
+      
+      # 3. Add surfaces to subplots, specifying row and col
+      fig.add_trace(
+      go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
+      opacity=0.75),
+      row=r[j], col=c[j],
+      )
+      fig.update_layout(
+      title_text=f'European Put payoff for sigma = {sigma}',
+      height=800, width=800,
+      scene1=dict(
+      xaxis_title='Stock Price',
+      yaxis_title='Time to maturity',
+      zaxis_title='Option price'
+      ))
+      fig.update_layout(
+      title_text=f'European Put payoff for sigma = {sigma}',
+      height=800, width=800,
+      scene2=dict(
+      xaxis_title='Stock Price',
+      yaxis_title='Time to maturity',
+      zaxis_title='Option price'
+      ))
+      fig.update_layout(
+      title_text=f'European Put payoff for sigma = {sigma}',
+      height=800, width=800,
+      scene3=dict(
+      xaxis_title='Stock Price',
+      yaxis_title='Time to maturity',
+      zaxis_title='Option price'
+      ))
+      fig.update_layout(
+      title_text=f'European Put payoff for sigma = {sigma}',
+      height=800, width=800,
+      scene4=dict(
+      xaxis_title='Stock Price',
+      yaxis_title='Time to maturity',
+      zaxis_title='Option price'
+      ))
+      st.plotly_chart(fig) #, use_container_width=True)
