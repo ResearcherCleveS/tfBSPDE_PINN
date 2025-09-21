@@ -172,11 +172,11 @@ tau = tau.reshape(-1,1)         # <-- collocation temporal points.
 # fig.suptitle('European Put payoff for sigma = 0.35')
 r = [1,1,2,2]
 c = [1,2,1,2]
-fig = make_subplots(
-  rows=2, cols=2,
-  specs=[[{'type': 'surface'}] * 2] * 2,
-  subplot_titles=(f'alpha = {alpha_1}', f'alpha = {alpha_2}', f'alpha = {alpha_3}', f'alpha = {alpha_4}')
-)
+# fig = make_subplots(
+#   rows=2, cols=2,
+#   specs=[[{'type': 'surface'}] * 2] * 2,
+#   subplot_titles=(f'alpha = {alpha_1}', f'alpha = {alpha_2}', f'alpha = {alpha_3}', f'alpha = {alpha_4}')
+# )
 u_pred_lst = []
 with st.spinner('Calculating PINN... (approx ~90s each model\'s training & test)'): #implied volatility...'):
   for j, alpha in enumerate(np.array([alpha_1, alpha_2, alpha_3, alpha_4])): #np.array([0.1, 0.3, 0.7, 0.9])):
@@ -243,6 +243,12 @@ with st.spinner('Calculating PINN... (approx ~90s each model\'s training & test)
       # )
       
       # 3. Add surfaces to subplots, specifying row and col
+      fig = make_subplots(
+          rows=j+1, cols=j+1,
+          specs=[[{'type': 'surface'}] * c[j]] * c[j],
+          subplot_titles=(f'alpha = {alpha_1}', f'alpha = {alpha_2}', f'alpha = {alpha_3}', f'alpha = {alpha_4}')
+      )
+
       fig.add_trace(
       go.Surface(x=x_test, y=t_test, z=u_pred_lst[j], colorscale='Viridis', showscale=True,
       opacity=0.75),
