@@ -102,20 +102,20 @@ min_strike_pct = st.sidebar.number_input(
 )
 # Say four hidden layers in the summary description.
 class PINN(nn.Module):
-  def __init__(self):
+  def __init__(self, hidden=10):
     super(PINN, self).__init__()
     self.hidden = nn.Sequential(
-        nn.Linear(2, 20),
+        nn.Linear(2, hidden),
         nn.Sigmoid(),
-        nn.Linear(20, 20),
+        nn.Linear(hidden, hidden),
         nn.Sigmoid(),
-        nn.Linear(20, 20),
+        nn.Linear(hidden, hidden),
         nn.Sigmoid(),
-        nn.Linear(20, 20),
+        nn.Linear(hidden, hidden),
         nn.Sigmoid(),
-        nn.Linear(20, 20),
+        nn.Linear(hidden, hidden),
         nn.Sigmoid(),
-        nn.Linear(20,1)
+        nn.Linear(hidden,1)
     )
 
   def forward(self, x, t):
